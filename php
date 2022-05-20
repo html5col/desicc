@@ -56,7 +56,7 @@ sudo chown apache:apache /var/log/php
 # Reload Apache:
 sudo systemctl reload httpd.service
 
-
+echo "completed: installed PHP 7.4"
 
 
 

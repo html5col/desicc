@@ -2,7 +2,7 @@
 # clear: if you want to clear the above info in the command
 echo "installing php..."
 
-cd ./
+cd /
 wget https://wordpress.org/latest.tar.gz
 
 
@@ -14,17 +14,18 @@ tar -xzvf latest.tar.gz
 
 echo "move all the files to the exact place: ..."
 sudo cp -avr  /wordpress/*   /var/www/html/dessic.com/public_html
+sudo rm -rf /wordpress latest.tar.gz
 
 
-mv wp-config-sample.php  wp-config.php
+mv /var/www/html/dessic.com/public_html/wp-config-sample.php /var/www/html/dessic.com/public_html/wp-config.php
 
 echo "modify wp-config.php, then modify your username,password, db name"
-sudo \cp  /newFile/wp-config   /var/www/html/dessic.com/public_html
+sudo \cp  /automatic/dessic/newFile/wp-config.php   /var/www/html/dessic.com/public_html
 
 
 
 echo "create an folder for uploads and assign needed permissions by running below commands."
-sudo mkdir /var/www/html/dessicc.com/public_html/wp-content/uploads
+sudo mkdir /var/www/html/dessic.com/public_html/wp-content/uploads
 sudo chown -R apache:apache /var/www/html/dessic.com/
 sudo chmod -R 755 /var/www/html/dessic.com/
 
