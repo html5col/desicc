@@ -3,12 +3,13 @@
 echo "installing apache..."
 sudo yum update -y
 #  Install Apache 2.4
-sudo yum install httpd
+sudo yum install httpd -y
+echo "apache installed."
 
 # Enable Apache to start at boot and start the Apache service:sudo  )
 systemctl enable httpd.service
 sudo systemctl start httpd.service
-
+echo "over: Enable Apache to start at boot and start the Apache service"
 
 
 # move all the files to the exact place: 
@@ -41,4 +42,6 @@ sudo ln -s /etc/httpd/sites-available/dessic.com.conf /etc/httpd/sites-enabled/d
 
 # Reload to apply your new configuration
 sudo systemctl reload httpd.service
+
+echo "apache over"
 
