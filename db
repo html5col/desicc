@@ -1,0 +1,26 @@
+#!/bin/bash
+# clear: if you want to clear the above info in the command
+echo "install MariaDB..."
+
+sudo yum install mariadb-server -y
+
+# Set MariaDB to start at boot and start the daemon for the first time:
+sudo systemctl enable mariadb.service
+sudo systemctl start mariadb.service
+
+# Run mysql_secure_installation to secure MariaDB. 
+#You will be given the option to change the MariaDB root password, 
+#remove anonymous user accounts, disable root logins outside of localhost, 
+#and remove test databases and reload privileges. It is recommended that you answer yes to these options:
+sudo mysql_secure_installation
+
+
+
+echo "Create a MariaDB Database..."
+#Log in to MariaDB,Enter MariaDB’s root password. You will get the MariaDB prompt.:
+
+echo "after command : mysql -u root -p , type: create database webdata;   grant all on webdata.* to 'user' identified by 'password';"
+mysql -u root -p
+
+
+

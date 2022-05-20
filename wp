@@ -1,0 +1,43 @@
+#!/bin/bash
+# clear: if you want to clear the above info in the command
+echo "installing php..."
+
+cd ./
+wget https://wordpress.org/latest.tar.gz
+
+
+
+# Then extract the package using:
+tar -xzvf latest.tar.gz
+
+
+
+echo "move all the files to the exact place: ..."
+sudo cp -avr  /wordpress/*   /var/www/html/dessic.com/public_html
+
+
+mv wp-config-sample.php  wp-config.php
+
+echo "modify wp-config.php, then modify your username,password, db name"
+sudo \cp  /newFile/wp-config   /var/www/html/dessic.com/public_html
+
+
+
+echo "create an folder for uploads and assign needed permissions by running below commands."
+sudo mkdir /var/www/html/dessicc.com/public_html/wp-content/uploads
+sudo chown -R apache:apache /var/www/html/dessic.com/
+sudo chmod -R 755 /var/www/html/dessic.com/
+
+echo "Congrats. Now you could use your ip address to install wordpress! Have fun! "
+
+
+
+
+
+
+
+
+
+
+
+

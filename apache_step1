@@ -1,0 +1,44 @@
+#!/bin/bash
+# clear: if you want to clear the above info in the command
+echo "installing apache..."
+sudo yum update -y
+#  Install Apache 2.4
+sudo yum install httpd
+
+# Enable Apache to start at boot and start the Apache service:sudo  )
+systemctl enable httpd.service
+sudo systemctl start httpd.service
+
+
+
+# move all the files to the exact place: 
+sudo cp -f  ./newFile/httpd-mpm.conf   /etc/httpd/conf.modules.d
+
+
+# Create the directories to store your site files and logs. Replace example.com with your own site’s domain name.sudo 
+sudo mkdir -p /var/www/html/dessic.com/{public_html,logs}
+
+# Create the directories to store your site’s virtual hosts files:
+sudo mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
+
+
+#need a hand: 
+  #Attention Attention Attention Attention Attention Attention Attention  #
+
+# Edit Apache’s configuration file to let it know to look for virtual host files in the /etc/httpd/sites-enabled directory. Add the example line to the bottom of your httpd.conf file:
+        #    vi  /etc/httpd/conf/httpd.conf
+        #   IncludeOptional sites-enabled/*.conf
+# modify   Apache’s configuration file   (add IncludeOptional sites-enabled/*.conf at the bottom)
+sudo \cp  ./newFile/httpd.conf   /etc/httpd/conf/httpd.conf
+
+
+
+# create a virtual hosts file. 
+sudo cp   ./newFile/dessic.com.conf   /etc/httpd/sites-available
+
+#Create a symbolic link from your virtual hosts file in the sites-available directory to the sites-enabled directory. 
+sudo ln -s /etc/httpd/sites-available/dessic.com.conf /etc/httpd/sites-enabled/dessic.com.conf
+
+# Reload to apply your new configuration
+sudo systemctl reload httpd.service
+

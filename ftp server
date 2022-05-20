@@ -1,0 +1,35 @@
+# FTP服务器安装与配置
+
+# 1. 切换到root用户:  
+     su root  
+
+# 2. 查看系统中是否安装了vsftpd，可以通过执行命令 ：  
+     rpm -qa | grep vsftpd  
+
+# 3. 如果没有安装 vsftpd，则安装 ：  
+      yum -y install vsftpd  
+
+# 4. 创建ftp用户，比如ftp_test。命令：   
+       useradd -s /sbin/nologin -d /home/frank frank   
+
+# 5. 设置ftp_test用户密码。命令：  
+       passwd frank  执行之后输入2次密码确认就设置好了密码。
+
+echo "最后一行添加刚才添加的用户名：frank:
+       vim /etc/vsftpd/user_list "   
+        vim /etc/vsftpd/user_list
+
+
+# 7.更改配置文档 , 将内容全部替换如下：
+sudo \cp  ./newFile/vsftpd.conf   /etc/vsftpd/vsftpd.conf
+
+
+
+echo " 更改ftp目录权限... " 
+chmod -R 777 /home/frank
+
+echo "启动vsftp服务，命令：" 
+ systemctl start vsftpd.service  
+
+echo "查看ftp服务的状态，命令："
+systemctl status vsftpd.service 
