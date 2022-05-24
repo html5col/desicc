@@ -3,6 +3,7 @@
 echo "install MariaDB..."
 
 sudo yum install mariadb-server -y
+echo "mariadb-server install over"
 
 # Set MariaDB to start at boot and start the daemon for the first time:
 sudo systemctl enable mariadb.service

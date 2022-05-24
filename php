@@ -3,8 +3,8 @@
 echo "updating php..."
 
 echo "updating the server..."
-yum install epel-release yum-utils -y
 yum update -y
+yum install epel-release yum-utils -y
 
 echo "checking the version of php..."
 php -v
