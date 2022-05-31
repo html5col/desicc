@@ -3,6 +3,7 @@
 echo "installing php..."
 
 cd /
+yum install wget -y
 wget https://wordpress.org/latest.tar.gz
 
 
@@ -20,7 +21,7 @@ sudo rm -rf /wordpress latest.tar.gz
 mv /var/www/html/dessic.com/public_html/wp-config-sample.php /var/www/html/dessic.com/public_html/wp-config.php
 
 echo "modify wp-config.php, then modify your username,password, db name"
-sudo \cp  /automatic/dessic/newFile/wp-config.php   /var/www/html/dessic.com/public_html
+sudo \cp  /auto/dessic/newFile/wp-config.php   /var/www/html/dessic.com/public_html
 
 
 

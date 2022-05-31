@@ -23,5 +23,3 @@ echo "Create a MariaDB Database..."
 echo "after command : mysql -u root -p , type: create database webdata;   grant all on webdata.* to 'user' identified by 'password';"
 mysql -u root -p
 
-
-
