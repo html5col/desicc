@@ -10,7 +10,7 @@ sudo yum install httpd -y
 echo "apache installed."
 
 # Enable Apache to start at boot and start the Apache service:sudo  )
-systemctl enable httpd.service
+sudo systemctl enable httpd.service
 sudo systemctl start httpd.service
 echo "over: Enable Apache to start at boot and start the Apache service"
 
@@ -44,6 +44,7 @@ sudo mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
 sudo \cp  ./newFile/httpd.conf   /etc/httpd/conf/httpd.conf
 
 
+cd /var/www/html/desicc.com
 
 # create a virtual hosts file. 
 sudo cp   ./newFile/desicc.com.conf   /etc/httpd/sites-available

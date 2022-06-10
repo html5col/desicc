@@ -1,0 +1,12 @@
+yum update -y
+yum -y install git
+git config --global user.name html5col
+git config --global user.email html5master@sina.com
+git config --list
+
+
+
+mkdir /cmd && cd /cmd
+git clone https://github.com/html5col/dessic.git
+
+chmod 755 *
