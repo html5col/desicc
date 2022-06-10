@@ -22,7 +22,7 @@ mkdir /backup
 cp /etc/httpd/conf/httpd.conf  /backup/httpd.conf.backup
 
 # move all the files to the exact place: 
-sudo cp -f  ./newFile/httpd-mpm.conf   /etc/httpd/conf.modules.d
+sudo cp -f  /cmd/desicc/newFile/httpd-mpm.conf   /etc/httpd/conf.modules.d
 
 
 
@@ -41,13 +41,13 @@ sudo mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
         #    vi  /etc/httpd/conf/httpd.conf
         #   IncludeOptional sites-enabled/*.conf
 # modify   Apache’s configuration file   (add IncludeOptional sites-enabled/*.conf at the bottom)
-sudo \cp  ./newFile/httpd.conf   /etc/httpd/conf/httpd.conf
+sudo \cp  /cmd/desicc/newFile/httpd.conf   /etc/httpd/conf/httpd.conf
 
 
 cd /var/www/html/desicc.com
 
 # create a virtual hosts file. 
-sudo cp   ./newFile/desicc.com.conf   /etc/httpd/sites-available
+sudo cp   /cmd/desicc/newFile/desicc.com.conf   /etc/httpd/sites-available
 
 #Create a symbolic link from your virtual hosts file in the sites-available directory to the sites-enabled directory. 
 sudo ln -s /etc/httpd/sites-available/desicc.com.conf /etc/httpd/sites-enabled/desicc.com.conf
