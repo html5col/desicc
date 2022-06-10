@@ -20,6 +20,7 @@ sudo mysql_secure_installation
 echo "Create a MariaDB Database..."
 #Log in to MariaDB,Enter MariaDB’s root password. You will get the MariaDB prompt.:
 
-echo "after command : mysql -u root -p , type: create database webdata;   grant all on webdata.* to 'user' identified by 'password';"
+echo "after command : mysql -u root -p , type: create database webdata;   grant all on webdata.* to 'frank' identified by '548331198';"
 mysql -u root -p
 
+echo "then type:  quit"

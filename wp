@@ -1,6 +1,6 @@
 #!/bin/bash
 # clear: if you want to clear the above info in the command
-echo "installing php..."
+echo "installing wget and wp ..."
 
 cd /
 yum install wget -y
@@ -14,21 +14,21 @@ tar -xzvf latest.tar.gz
 
 
 echo "move all the files to the exact place: ..."
-sudo cp -avr  /wordpress/*   /var/www/html/dessic.com/public_html
+sudo cp -avr  /wordpress/*   /var/www/html/desicc.com/public_html
 sudo rm -rf /wordpress latest.tar.gz
 
 
-mv /var/www/html/dessic.com/public_html/wp-config-sample.php /var/www/html/dessic.com/public_html/wp-config.php
+mv /var/www/html/desicc.com/public_html/wp-config-sample.php /var/www/html/desicc.com/public_html/wp-config.php
 
 echo "modify wp-config.php, then modify your username,password, db name"
-sudo \cp  /auto/dessic/newFile/wp-config.php   /var/www/html/dessic.com/public_html
+sudo \cp  /automatic/desicc/newFile/wp-config.php   /var/www/html/desicc.com/public_html
 
 
 
 echo "create an folder for uploads and assign needed permissions by running below commands."
-sudo mkdir /var/www/html/dessic.com/public_html/wp-content/uploads
-sudo chown -R apache:apache /var/www/html/dessic.com/
-sudo chmod -R 755 /var/www/html/dessic.com/
+sudo mkdir /var/www/html/desicc.com/public_html/wp-content/uploads
+sudo chown -R apache:apache /var/www/html/desicc.com/
+sudo chmod -R 755 /var/www/html/desicc.com/
 
 echo "Congrats. Now you could use your ip address to install wordpress! Have fun! "
 

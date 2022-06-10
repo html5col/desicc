@@ -1,7 +1,18 @@
 #!/bin/bash
 # clear: if you want to clear the above info in the command
+
+
+#Configure a Custom Hostname
+hostnamectl set-hostname desicca.com
+
+hostname
+hostname -f
+
+sudo yum update -y  
+
 echo "installing apache..."
-sudo yum update -y
+
+
 #  Install Apache 2.4
 sudo yum install httpd -y
 echo "apache installed."
@@ -12,12 +23,20 @@ sudo systemctl start httpd.service
 echo "over: Enable Apache to start at boot and start the Apache service"
 
 
+
+
+echo "create a backup of your Apache configuration file..."
+mkdir /backup
+cp /etc/httpd/conf/httpd.conf  /backup/httpd.conf.backup
+
 # move all the files to the exact place: 
 sudo cp -f  ./newFile/httpd-mpm.conf   /etc/httpd/conf.modules.d
 
 
+
 # Create the directories to store your site files and logs. Replace example.com with your own site’s domain name.sudo 
-sudo mkdir -p /var/www/html/dessic.com/{public_html,logs}
+echo "Create the directories to store your site files and logs..."
+sudo mkdir -p /var/www/html/desicc.com/{public_html,logs}
 
 # Create the directories to store your site’s virtual hosts files:
 sudo mkdir -p /etc/httpd/sites-available /etc/httpd/sites-enabled
@@ -35,13 +54,57 @@ sudo \cp  ./newFile/httpd.conf   /etc/httpd/conf/httpd.conf
 
 
 # create a virtual hosts file. 
-sudo cp   ./newFile/dessic.com.conf   /etc/httpd/sites-available
+sudo cp   ./newFile/desicc.com.conf   /etc/httpd/sites-available
 
 #Create a symbolic link from your virtual hosts file in the sites-available directory to the sites-enabled directory. 
-sudo ln -s /etc/httpd/sites-available/dessic.com.conf /etc/httpd/sites-enabled/dessic.com.conf
+sudo ln -s /etc/httpd/sites-available/desicc.com.conf /etc/httpd/sites-enabled/desicc.com.conf
 
 # Reload to apply your new configuration
 sudo systemctl reload httpd.service
 
+
+
+echo "apache setting over"
+
+
+
+
+
+
+
+
+
+
+
+
+#Use chown to make apache the owner of the web directory:
+echo "configure selinux to allow http"
+sudo chown apache:apache -R /var/www/html/desicc.com/
+
+#Modify the permissions for files and directories:
+cd /var/www/html/desicc.com/
+find . -type f -exec sudo chmod 0644 {} \;
+find . -type d -exec sudo chmod 0755 {} \;
+
+#Use SELinux’s chcon to change the file security context for web content:
+sudo chcon -t httpd_sys_content_t /var/www/html/desicc.com -R
+sudo chcon -t httpd_sys_rw_content_t /var/www/html/desicc.com
+
+
+#Enable Apache to start at boot and restart the service for the above changes to take place:
+sudo systemctl enable httpd.service
+sudo systemctl restart httpd.service
+
 echo "apache over"
 
+
+#Configure FirewallD to Allow HTTP Connections
+#FirewallD is enabled for CentOS 7 Linodes, but HTTP is not included in the default set of services.
+
+#View the default set of services:
+
+sudo firewall-cmd --zone=public --list-services
+ssh dhcpv6-client
+#To allow connections to Apache, add HTTP as a service:
+sudo firewall-cmd --zone=public --add-service=http --permanent
+sudo firewall-cmd --zone=public --add-service=http
